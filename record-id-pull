@@ -1,0 +1,9 @@
+# Replace these variables with your own values
+API_KEY="your_cloudflare_api_token"
+ZONE_ID="your_zone_id"
+SUBDOMAIN="subdomain.yourrootdomain.com"
+
+# Get the record ID
+curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?type=A&name=$SUBDOMAIN" \
+     -H "Authorization: Bearer $API_KEY" \
+     -H "Content-Type: application/json" | jq -r '.result[0].id'
